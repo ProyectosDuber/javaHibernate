@@ -153,6 +153,25 @@ public class Usuarios extends Padre implements java.io.Serializable {
             return null;
         }
     }
+     public Vector<Fases> getVectorFases(){
+        try {
+                 
+           Object[] fases = this.faseses.toArray();
+           Vector<Fases> vector = new Vector();
+           
+           for(int x =0; x<this.faseses.size();x++){
+               Fases fase = (Fases) fases[x];
+              vector.add(fase);
+           }
+           
+           return vector;
+           
+            
+        } catch (Exception e) {
+           
+            return null;
+        }
+    }
     
     
 }
