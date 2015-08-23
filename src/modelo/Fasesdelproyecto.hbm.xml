@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/08/2015 09:16:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Fasesdelproyecto" table="fasesdelproyecto" catalog="proyectos" optimistic-lock="version">
+        <id name="idFaseDelProyecto" type="java.lang.Integer">
+            <column name="idFaseDelProyecto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fases" class="modelo.Fases" fetch="select">
+            <column name="Fase" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proyectos" class="modelo.Proyectos" fetch="select">
+            <column name="Proyecto" not-null="true" />
+        </many-to-one>
+        <set name="defectoses" cascade="all" table="defectos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="faseDeProyecto" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Defectos" />
+        </set>
+    </class>
+</hibernate-mapping>

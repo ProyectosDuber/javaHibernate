@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/08/2015 09:16:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuarios" table="usuarios" catalog="proyectos" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="45" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="8" />
+        </property>
+        <set name="proyectoses" cascade="all" table="proyectos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Proyectos" />
+        </set>
+        <set name="faseses" cascade="all" table="fases" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Fases" />
+        </set>
+    </class>
+</hibernate-mapping>

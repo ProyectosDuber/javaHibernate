@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/08/2015 09:16:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Proyectos" table="proyectos" catalog="proyectos" optimistic-lock="version">
+        <id name="idProyecto" type="java.lang.Integer">
+            <column name="idProyecto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarios" class="modelo.Usuarios" fetch="select">
+            <column name="Usuario" not-null="true" />
+        </many-to-one>
+        <property name="codigo" type="string">
+            <column name="codigo" length="45" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="numeroDeFases" type="int">
+            <column name="numeroDeFases" not-null="true" />
+        </property>
+        <set name="fasesdelproyectos" cascade="all" table="fasesdelproyecto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Proyecto" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Fasesdelproyecto" />
+        </set>
+    </class>
+</hibernate-mapping>
